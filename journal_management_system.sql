@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2023 at 05:22 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.20
+-- Generation Time: Mar 15, 2024 at 07:48 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,7 @@ CREATE TABLE `associative_editor_information` (
   `associative_editor_country` varchar(200) NOT NULL,
   `associative_editor_password` varchar(200) NOT NULL,
   `associative_editor_status` enum('0','1') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `associative_editor_information`
@@ -53,7 +53,8 @@ INSERT INTO `associative_editor_information` (`id`, `associative_editor_name`, `
 (11, 'Bella ', 'Associate Professor', 'BU', 'bella@gmail.com', '01986746445', 'Bhutan', '25f9e794323b453885f5181f1b624d0b', '1'),
 (12, 'Aurbey', 'Professor', 'RU', 'aurbey@gmail.com', '01789957899', 'Denmark', '25f9e794323b453885f5181f1b624d0b', '0'),
 (13, 'Naira', 'Assistant Professor', 'CU', 'naira@gmail.com', '01947385679', 'Netherlands', '25f9e794323b453885f5181f1b624d0b', '1'),
-(14, 'Tashfin', 'Assistant Professor', 'BAU', 'tashfin@gmail.com', '01793345678', 'Finland', '25f9e794323b453885f5181f1b624d0b', '0');
+(14, 'Tashfin', 'Assistant Professor', 'BAU', 'tashfin@gmail.com', '01793345678', 'Finland', '25f9e794323b453885f5181f1b624d0b', '0'),
+(15, 'MK Rakib', 'Associate Professor', 'JKKNIU', 'mkrcoding1998@gmail.com', '01727027277', 'Bangladesh', 'f4ad231214cb99a985dff0f056a36242', '1');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,7 @@ CREATE TABLE `author_information` (
   `author_contact_no` varchar(11) NOT NULL,
   `author_country` varchar(200) NOT NULL,
   `author_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `author_information`
@@ -88,7 +89,8 @@ INSERT INTO `author_information` (`id`, `author_name`, `author_designation`, `au
 (12, 'Divisha', 'Lecturer', 'IU', 'divisha@gmail.com', '01789035667', 'India', '25f9e794323b453885f5181f1b624d0b'),
 (13, 'Erram khan', 'Assistant Professor', 'EU', 'erram@gmail.com', '01894437345', 'Egypt', '25f9e794323b453885f5181f1b624d0b'),
 (14, 'Mahir', 'Associate Professor', 'MSTU', 'mahir@gmail.com', '01988976070', 'Maldives', '25f9e794323b453885f5181f1b624d0b'),
-(15, 'Sanaya', 'Associate Professor', 'AIUB', 'sanaya@gmail.com', '01789094577', 'American Samoa', '25f9e794323b453885f5181f1b624d0b');
+(15, 'Sanaya', 'Associate Professor', 'AIUB', 'sanaya@gmail.com', '01789094577', 'American Samoa', '25f9e794323b453885f5181f1b624d0b'),
+(16, 'Mehedi Khan Rakib', 'Professor', 'JKKNIU', 'mkrakib328@gmail.com', '01643540358', 'Bangladesh', 'f4ad231214cb99a985dff0f056a36242');
 
 -- --------------------------------------------------------
 
@@ -105,14 +107,14 @@ CREATE TABLE `main_editor_information` (
   `main_editor_contact_no` varchar(11) NOT NULL,
   `main_editor_country` varchar(200) NOT NULL,
   `main_editor_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `main_editor_information`
 --
 
 INSERT INTO `main_editor_information` (`id`, `main_editor_name`, `main_editor_designation`, `main_editor_university_name`, `main_editor_email`, `main_editor_contact_no`, `main_editor_country`, `main_editor_password`) VALUES
-(2, 'Election1', 'Professor', 'Jatiya Kabi Kazi Nazrul Islam University', 'jkkniuelection@gmail.com', '01515652901', 'Bangladesh', '25f9e794323b453885f5181f1b624d0b');
+(2, 'Election1', 'Professor', 'Jatiya Kabi Kazi Nazrul Islam University', 'mkrakib007@gmail.com', '01515652901', 'Bangladesh', '25f9e794323b453885f5181f1b624d0b');
 
 -- --------------------------------------------------------
 
@@ -142,10 +144,10 @@ CREATE TABLE `new_paper` (
   `count` int(11) NOT NULL,
   `volume_info` varchar(200) DEFAULT NULL,
   `issue_info` varchar(200) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `published_status` enum('0','1') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `new_paper`
@@ -183,7 +185,8 @@ INSERT INTO `new_paper` (`id`, `paper_id`, `author_id`, `associative_editor_id`,
 (79, '1683394140', 4, '5', '', 'The Protective Role of Glutathione Peroxidase in Apoptosis Induced by Reactive Oxygen Species .', 'Selenium-dependent glutathione peroxidase (GPx) plays a protective role in oxidative stress-induced apoptosis. In this study, we demonstrated that MDBK cells, a bovine renal epithelial cell line, exhibited internucleosomal DNA fragmentation characteristic of apoptotic cell death under selenium-deficient conditions with lower doses of hydrogen peroxide (H2O2) than under selenium-supplemented ones. This was due to a decreased amount of GPx in the cells under selenium-deficient conditions, because other antioxidative enzyme activities were not affected by the selenium supplementation. Cumene hydroperox-ide also induced DNA fragmentation in selenium-deficient cells but no ladder formation was observed. ', 'apoptosis, catalase, glutathione peroxidase, hydrogen peroxide, selenium deficiency', 'requested paper', '', '', '', '', '1683394140.pdf', '1683394140.pdf', '', '1683394140.pdf', 3, 1, '', '', '2023-05-06 17:29:00', '2023-05-27 19:32:01', '0'),
 (80, '1685283438', 4, '5', '12', '174 Niaz Zaman. “I am Keats: Kazi Nazrul Islam and the Romantic Poet.” CROSSINGS: VOL. 12 | 2021 | pp. 174-181 | ISSN 2071–1107 I am Keats: Kazi Nazrul Islam and the Romantic Poet', 'In a letter to Qazi Motahar Hossain, Kazi Nazrul Islam described how close he\r\nfelt to Keats. He even feared that his sore throat was a sign of tuberculosis and\r\nhe would succumb to it as Keats did. He was also in love, like Keats, with a\r\nwoman who did not reciprocate his love. However, it was not only in his personal\r\nletters that Nazrul talked about Keats, but also in his essays. It is possible that the\r\ninspiration for “Amar Sundar” (My Beauty) came from Keats’ oft-quoted line.\r\nTh is paper will examine selected letters and essays by Nazrul to show how he\r\nappropriated the youngest English Romantic in his writings', 'Qazi Motahar Hossain, Kazi Nazrul Islam, Keats, letters, essays, “Amar Sundar”', 'commentary papers', '', '', '', '', '1685283438.pdf', '1685283438.pdf', '', '1685283438.pdf', -1, 1, '', '', '2023-05-28 14:17:18', '2023-05-28 14:28:06', '0'),
 (81, '1685283438', 4, '5', '12', 'I am Keats: Kazi Nazrul Islam and the Romantic Poet.', 'In a letter to Qazi Motahar Hossain, Kazi Nazrul Islam described how close he\r\nfelt to Keats. He even feared that his sore throat was a sign of tuberculosis and\r\nhe would succumb to it as Keats did. He was also in love, like Keats, with a\r\nwoman who did not reciprocate his love. However, it was not only in his personal\r\nletters that Nazrul talked about Keats, but also in his essays. It is possible that the\r\ninspiration for “Amar Sundar” (My Beauty) came from Keats’ oft-quoted line.\r\nTh is paper will examine selected letters and essays by Nazrul to show how he\r\nappropriated the youngest English Romantic in his writings                                ', 'Qazi Motahar Hossain, Kazi Nazrul Islam, Keats, letters, essays, “Amar Sundar”', 'commentary papers', '', '', '', '', '1685284086.pdf', '1685284086.pdf', '', '1685284086.pdf', 1, 2, '', '', '2023-05-28 14:28:06', '2023-05-28 14:28:06', '0'),
-(82, '1685300264', 4, '', '', 'A Comparative Study between Nazrul’s ‘The Rebel’ (Bidrohi) and Shelley’s ‘Ode to the West Wind’ Voice against Corruption', 'Both Nazrul and Shelley raise their voice against corruption which lies almost in every society and\r\nimpedes the development process by shaking the normal human relationships. Their words unmask the oppressors\r\nand exploiters who create an obvious gap between social classes, human relationships, and social institutions\r\nwhere people thrive for peace and harmony. This paper will analyze the poems ‘The Rebel’(Bidrohi) by\r\nBangladeshi national poet Kazi Nazrul Islam and ‘Ode to the West Wind’ by the English Romantic poet P.B.\r\nShelley to show the deprivation and suffering of the subalterns, and the voice of the poets against the corruption\r\nand anomalies in their respective societies. This will be qualitative research where data will be collected by\r\nanalyzing the texts and the renowned related critiques and articles from different sources. ‘Theory of Subaltern’\r\nby Antonio Gramsci and Gayatri Chakravorty Spivak will be observed in the study to bolster the voices of the\r\npoets. The people in the society who are dominated and deprived by the ruling class for long cannot speak of their\r\nmisery to us. Thus the poets shoulder their responsibilities to carry their voice against injustice and inequalities\r\ntake place in the society through their immortal verses. This study will help us to observe the unseen misery and to\r\nunderstand the unheard suffering of the subordinate class of the society who has been being oppressed by the\r\nruling class for many years.', 'Corruption, Exploiters, Injustice and Inequalities, Ruling Class, Subalterns.', 'original research(short paper)', '', '', '', '', '1685300264.pdf', '1685300264.pdf', '', '1685300264.pdf', 1, 1, '', '', '2023-05-28 18:57:44', '2023-05-28 18:57:44', '0');
+(82, '1685300264', 4, '', '', 'A Comparative Study between Nazrul’s ‘The Rebel’ (Bidrohi) and Shelley’s ‘Ode to the West Wind’ Voice against Corruption', 'Both Nazrul and Shelley raise their voice against corruption which lies almost in every society and\r\nimpedes the development process by shaking the normal human relationships. Their words unmask the oppressors\r\nand exploiters who create an obvious gap between social classes, human relationships, and social institutions\r\nwhere people thrive for peace and harmony. This paper will analyze the poems ‘The Rebel’(Bidrohi) by\r\nBangladeshi national poet Kazi Nazrul Islam and ‘Ode to the West Wind’ by the English Romantic poet P.B.\r\nShelley to show the deprivation and suffering of the subalterns, and the voice of the poets against the corruption\r\nand anomalies in their respective societies. This will be qualitative research where data will be collected by\r\nanalyzing the texts and the renowned related critiques and articles from different sources. ‘Theory of Subaltern’\r\nby Antonio Gramsci and Gayatri Chakravorty Spivak will be observed in the study to bolster the voices of the\r\npoets. The people in the society who are dominated and deprived by the ruling class for long cannot speak of their\r\nmisery to us. Thus the poets shoulder their responsibilities to carry their voice against injustice and inequalities\r\ntake place in the society through their immortal verses. This study will help us to observe the unseen misery and to\r\nunderstand the unheard suffering of the subordinate class of the society who has been being oppressed by the\r\nruling class for many years.', 'Corruption, Exploiters, Injustice and Inequalities, Ruling Class, Subalterns.', 'original research(short paper)', '', '', '', '', '1685300264.pdf', '1685300264.pdf', '', '1685300264.pdf', 1, 1, '', '', '2023-05-28 18:57:44', '2023-05-28 18:57:44', '0'),
+(83, '1704297515', 16, '15', '22', 'Data Structure and Algorithm', 'Data Structure and Algorithm is a necessary terms in Computer Science.', 'Data,Structure,Algorithms', 'original research(full paper)', 'Dr. Tushar Kanti Saha', 'JKKNIU research society', 'Assistant Professor', 'mkrcoding1998@gmail.com', '1704297515.pdf', '1704297515.pdf', '1704297515.png', '1704297515.pdf', 100, 1, 'Volume 5', 'Issue 1', '0000-00-00 00:00:00', '2024-01-03 16:17:30', '1');
 
 -- --------------------------------------------------------
 
@@ -198,7 +201,7 @@ CREATE TABLE `reviewer_comment` (
   `options` varchar(50) NOT NULL,
   `comments` varchar(1000) NOT NULL,
   `count` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reviewer_comment`
@@ -225,7 +228,8 @@ INSERT INTO `reviewer_comment` (`id`, `paper_id`, `reviewer_id`, `options`, `com
 (50, '1683356188', '12', 'Required Minor Revision', '', 1),
 (51, '1683378638', '12', 'Accept', '', 1),
 (52, '1683354769', '12', 'Accept', '', 1),
-(53, '1683354925', '12', '', '', 1);
+(53, '1683354925', '12', '', '', 1),
+(54, '1704297515', '22', 'Required Minor Revision', 'Your paper needs to be corrected.', 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +247,7 @@ CREATE TABLE `reviewer_information` (
   `reviewer_country` varchar(200) NOT NULL,
   `reviewer_password` varchar(200) NOT NULL,
   `reviewer_status` enum('0','1') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reviewer_information`
@@ -259,7 +263,8 @@ INSERT INTO `reviewer_information` (`id`, `reviewer_name`, `reviewer_designation
 (18, 'Westin Reviewer', 'Associate Professor', 'NU', 'westin@gmail.com', '01934856789', 'Western Sahara', '25f9e794323b453885f5181f1b624d0b', '0'),
 (19, 'Sarah Reviewer', 'Lecturer', 'CBST', 'sarah@gmail.com', '01965098756', 'Saudi Arabia', '25f9e794323b453885f5181f1b624d0b', '0'),
 (20, 'Arora Reviewer', 'Lecturer', 'AIUB', 'arora@gmail.com', '01795789434', 'Zimbabwe', '25f9e794323b453885f5181f1b624d0b', '0'),
-(21, '	Alexander Ars', 'Associate Professor', 'AHMC', 'alex@gmail.com', '01678945678', 'Germany', '25f9e794323b453885f5181f1b624d0b', '1');
+(21, '	Alexander Ars', 'Associate Professor', 'AHMC', 'alex@gmail.com', '01678945678', 'Germany', '25f9e794323b453885f5181f1b624d0b', '1'),
+(22, 'MKR Reviewer', 'Lecturer', 'JKKNIU', 'mkrakib3281@gmail.com', '01717875741', 'Bangladesh', 'f4ad231214cb99a985dff0f056a36242', '1');
 
 --
 -- Indexes for dumped tables
@@ -309,13 +314,13 @@ ALTER TABLE `reviewer_information`
 -- AUTO_INCREMENT for table `associative_editor_information`
 --
 ALTER TABLE `associative_editor_information`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `author_information`
 --
 ALTER TABLE `author_information`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `main_editor_information`
@@ -327,19 +332,19 @@ ALTER TABLE `main_editor_information`
 -- AUTO_INCREMENT for table `new_paper`
 --
 ALTER TABLE `new_paper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `reviewer_comment`
 --
 ALTER TABLE `reviewer_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `reviewer_information`
 --
 ALTER TABLE `reviewer_information`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
